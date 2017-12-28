@@ -1,14 +1,32 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Buffet</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>Buffet</title>
 
-<%= yield %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <header>
+      <div class = "header_wrapper">
+        <div class = "logo_wrapper">
+          <h1 class = "header_logo">ビュッフェ</h1>
+          <span class = sub_logo>あなただけの美味しいを見つけるサービス</span>
+        </div>
+        <div class = "login_wrapper">
+          <li id = login>ログイン</li>
+          <li id = registration>新規登録</li>
+        </div>
+      </div>
+    </header>
 
-</body>
+
+  <%= yield %>
+
+  <footer>
+    <p>Copyright 2018 ビュッフェ<p>
+  </footer>
+
+  </body>
 </html>
