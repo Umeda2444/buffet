@@ -1,0 +1,105 @@
+@charset "UTF-8";
+
+/* --------------------------------
+ * base
+ * -------------------------------- */
+html {
+  font-size: 62.5%;
+}
+body {
+  padding: 30px;
+  background-color: #FFE3D9;
+  color: #333;
+  font-size: 1.2rem;
+  font-family: "Hiragino Kaku Gothic ProN",  Meiryo,  sans-serif;
+}
+/**, *::before, *::after {
+  box-sizing: border-box;
+}
+a:link, a:visited, a:hover, a:active {
+  color: #7C5119;
+  text-decoration: none;
+}*/
+
+/* --------------------------------
+ * item
+ * -------------------------------- */
+
+header {
+  width : 100%;
+  background-color: #FF9A77;
+}
+
+.header_wrapper{
+  width: 940px;
+  margin: 0 10px;
+  margin: auto;
+}
+
+.logo_wrapper{
+  width: 620px;
+  height: 40px;
+  display: inline-block;
+  margin: 0;
+}
+
+.header_logo{
+  color: #401406;
+  padding: 0 10px;
+  display: table-cell;
+  vertical-align: bottom;
+}
+
+
+.sub_logo{
+  color: #401406;
+  padding: 0 10px;
+  font-size: 16px;
+  display: table-cell;
+  vertical-align: bottom;
+}
+
+.login_wrapper{
+  float: right;
+  display: inline-block;
+  margin: 0;
+}
+
+.login_wrapper li{
+  font-size: 16px;
+  padding: 10px;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.contents{
+  width: 940px;
+  margin: 0 10px;
+  padding: 30px 0;
+  margin: auto;
+}
+
+footer{
+  width : 100%;
+}
+
+footer p{
+  text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+/********************************/
+.clearfix:after {
+  content: "";
+  clear: both;
+  display: block;
+}
