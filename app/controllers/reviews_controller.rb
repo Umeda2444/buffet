@@ -14,7 +14,7 @@ class ReviewsController < ApplicationController
 
   private
   def create_params
-    params.require(:review).permit(:mood, :temperature, :music, :design, :creanliness, :food, :umami, :amami, :sanmi, :siomi, :nigami, :service, :speed, :care, :value, :custom).merge(user_id: current_user.id)
+    params.require(:review).permit(:mood, :temperature, :music, :design, :creanliness, :food, :umami, :amami, :sanmi, :siomi, :nigami, :service, :speed, :care, :value, :custom).merge(restaurant_id: params[:restaurant_id],user_id: current_user.id)
   end
 
   def move_to_index

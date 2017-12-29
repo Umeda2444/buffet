@@ -13,6 +13,11 @@
       <li>
         <a href="/restaurants/<%= restaurant.id %>"><%= restaurant.name %></a></br>
         <a href="/restaurants/<%= restaurant.id %>"><img class="thumbnail" src= <%= restaurant.image_url %> alt="title" onerror="this.src='/assets/NoImage.jpeg';" /></a>
+        <table>
+          <tr><td>雰囲気</td><td><%= restaurant.mood_average %></td></tr>
+          <tr><td>料理</td><td><%= restaurant.food_average %></td></tr>
+          <tr><td>サービス</td><td><%= restaurant.service_average %></td></tr>
+        </table>
       </li>
     <% end %>
   </div>
