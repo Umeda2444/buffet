@@ -1,0 +1,37 @@
+<div class="contents">
+
+    <h3>
+      レストランの投稿
+    </h3>
+
+    <%= form_for @restaurant do |f| %>
+      <div style="margin: 8px 0">
+        <%= f.text_area :restaurant_name, placeholder: 'お店の名前', style: 'width: 50%' %>
+      </div>
+      <div style="margin: 8px 0">
+        <%= f.label :"ジャンル" %><br>
+        <%= f.select :category, [["居酒屋", "居酒屋"], ["バー・バル", "バー・バル"], ["和食", "和食"], ["中華料理", "中華料理"], ["洋食", "洋食"], ["韓国料理", "韓国料理"], ["ラーメン", "ラーメン"], ["カフェ", "カフェ"], ["その他", "その他"]] ,class:"form-control", style: 'width: 200px' %>
+      </div>
+      <div style="margin: 8px 0">
+        <%= f.text_area :place, placeholder: 'お店の場所', style: 'width: 50%' %>
+      </div>
+      <div style="margin: 8px 0">
+        <%= f.text_area :holiday, placeholder: '定休日', style: 'width: 50%' %>
+      </div>
+      <div style="margin: 8px 0">
+        <%= f.text_area :opening_hour, placeholder: '営業時間', style: 'width: 50%' %>
+      </div>
+      <div style="margin: 8px 0">
+        <%= f.text_area :tel, placeholder: 'TEL', style: 'width: 50%' %>
+      </div>
+
+      <div class="row">
+        <div class="col10 push1">
+          <%= button_tag type: "submit", class: "btn btn--block" do %>
+          投稿する<i class="icon-arrow-right"></i>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
+</div>
