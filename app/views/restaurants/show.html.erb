@@ -1,0 +1,29 @@
+<div class="contents">
+  <h2><%= @restaurant.name %></h2>
+  <a class="score" href="/restaurants/<%= @restaurant.id %>/reviews/new" >評価</a>
+
+  <p>お店の情報</p>
+  <table>
+    <tbody>
+      <tr>
+        <th>ジャンル</th>
+        <td><%= @restaurant.category %></td>
+      </tr>
+      <tr>
+        <th>場所</th>
+        <td><%= @restaurant.place %></td>
+      </tr>
+      <tr>
+        <th>定休日</th>
+        <td><%= @restaurant.holiday %></td>
+      </tr>
+      <tr>
+        <th>営業時間</th>
+        <td><%= @restaurant.opening_hour %></td>
+      </tr>
+      <tr>
+        <th>TEL</th>
+        <td><%= @restaurant.tel %></td>
+    </tbody>
+  </table>
+</div>

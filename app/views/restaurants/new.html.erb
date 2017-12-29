@@ -6,7 +6,7 @@
 
     <%= form_for @restaurant do |f| %>
       <div style="margin: 8px 0">
-        <%= f.text_area :restaurant_name, placeholder: 'お店の名前', style: 'width: 50%' %>
+        <%= f.text_area :name, placeholder: 'お店の名前', style: 'width: 50%' %>
       </div>
       <div style="margin: 8px 0">
         <%= f.label :"ジャンル" %><br>
@@ -23,6 +23,9 @@
       </div>
       <div style="margin: 8px 0">
         <%= f.text_area :tel, placeholder: 'TEL', style: 'width: 50%' %>
+      </div>
+      <div style="margin: 8px 0">
+        <%= f.text_area :image_url, placeholder: 'Image URL', style: 'width: 50%' %>
       </div>
 
       <div class="row">

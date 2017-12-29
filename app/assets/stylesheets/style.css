@@ -54,11 +54,13 @@ header {
 
 .header_logo{
   color: #401406;
+  font-size: 30px;
+  font-weight: bold;
   padding: 0 10px;
   display: table-cell;
   vertical-align: bottom;
+  text-decoration: none;
 }
-
 
 .sub_logo{
   color: #401406;
@@ -132,6 +134,15 @@ margin: 0;
   vertical-align: middle;
   margin: auto;
 }
+
+.thumbnail{
+  width: 100px;
+  height: 100px;
+}
+
+
+
+
 
 
 

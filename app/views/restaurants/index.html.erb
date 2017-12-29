@@ -1,3 +1,19 @@
-<div class="contents row">
-  Hello
+<div class="contents">
+  <div>
+    <p>お店の検索</p>
+    <div>
+      <%= form_tag('/restaurants', method: :get) do %>
+        <input name="keyword" placeholder="お店の名前で検索" type="text" value=""><button class="btn-search" title="検索" type="submit"><i class="icon-search"></i></button></input>
+      <% end %>
+    </div>
+  </div>
+  <div>
+  <p>お店一覧</p>
+    <% @restaurant.each do |restaurant| %>
+      <li>
+        <a href="/restaurants/<%= restaurant.id %>"><%= restaurant.name %></a></br>
+        <a href="/restaurants/<%= restaurant.id %>"><img class="thumbnail" src= <%= restaurant.image_url %> alt="title" onerror="this.src='/assets/NoImage.jpeg';" /></a>
+      </li>
+    <% end %>
+  </div>
 </div>
