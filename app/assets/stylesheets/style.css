@@ -9,10 +9,19 @@ html {
 body {
   padding: 30px;
   background-color: #FFE3D9;
-  color: #333;
+  color: black;
   font-size: 1.2rem;
   font-family: "Hiragino Kaku Gothic ProN",  Meiryo,  sans-serif;
 }
+
+ul {
+  list-style:none;
+}
+
+li {
+  list-style:none;
+}
+
 /**, *::before, *::after {
   box-sizing: border-box;
 }
@@ -22,7 +31,7 @@ a:link, a:visited, a:hover, a:active {
 }*/
 
 /* --------------------------------
- * item
+ * header
  * -------------------------------- */
 
 header {
@@ -32,15 +41,15 @@ header {
 
 .header_wrapper{
   width: 940px;
-  margin: 0 10px;
+  height: 50px;
+  vertical-align: middle;
   margin: auto;
 }
 
 .logo_wrapper{
   width: 620px;
-  height: 40px;
   display: inline-block;
-  margin: 0;
+  padding: 5px 0 0 0;
 }
 
 .header_logo{
@@ -61,24 +70,77 @@ header {
 
 .login_wrapper{
   float: right;
-  display: inline-block;
-  margin: 0;
+  text-align: right;
 }
 
-.login_wrapper li{
+.login_wrapper .post{
   font-size: 16px;
-  padding: 10px;
-  display: table-cell;
+  width: 120px;
+  background-color: #7F270C;
+  color: #FFE3D9;
+  font-style: bold;
+  display: inline-block;
+  margin: 9px 0;
+  padding: 4px;
   vertical-align: middle;
+  text-align: center;
+  text-decoration: none;
+  }
+
+/*.login_wrapper .post:link{
 }
 
+.login_wrapper .post:visited {
+
+}
+
+.login_wrapper .post:hover {
+
+}*/
+
+.login_wrapper2{
+  float: right;
+  text-align: right;
+}
+
+ul.user_info{
+margin: 0;
+}
+
+.user_info li{
+margin: 0;
+}
+
+.login_wrapper2 .post{
+  font-size: 16px;
+  width: 120px;
+  background-color: #7F270C;
+  color: #FFE3D9;
+  font-style: bold;
+  display: inline-block;
+  margin: 2px 0;
+  padding: 2px;
+  vertical-align: middle;
+  text-align: center;
+  text-decoration: none;
+  }
+/* --------------------------------
+ * contents
+ * -------------------------------- */
 .contents{
   width: 940px;
-  margin: 0 10px;
-  padding: 30px 0;
+  vertical-align: middle;
   margin: auto;
 }
 
+
+
+
+
+
+/* --------------------------------
+ * footer
+ * -------------------------------- */
 footer{
   width : 100%;
 }
