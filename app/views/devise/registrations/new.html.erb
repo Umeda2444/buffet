@@ -6,12 +6,12 @@
 
     <div class="field">
       <%= f.label :username %> <em>(6 characters maximum)</em><br />
-      <%= f.text_field :username, autofocus: true, maxlength: "6" %>
+      <%= f.text_field :username, autofocus: true, placeholder: 'ユーザー名を入力' , maxlength: "6" %>
     </div>
 
     <div class="field">
       <%= f.label :email %><br />
-      <%= f.email_field :email %>
+      <%= f.email_field :email, placeholder: 'メールアドレスを入力' %>
     </div>
 
     <div class="field">
@@ -19,12 +19,12 @@
       <% if @minimum_password_length %>
       <em>(<%= @minimum_password_length %> characters minimum)</em>
       <% end %><br />
-      <%= f.password_field :password, autocomplete: "off" %>
+      <%= f.password_field :password, placeholder: 'パスワードを入力' , autocomplete: "off" %>
     </div>
 
     <div class="field">
       <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "off" %>
+      <%= f.password_field :password_confirmation, placeholder: 'パスワードを入力（確認用）' , autocomplete: "off" %>
     </div>
 
     <div class="actions">

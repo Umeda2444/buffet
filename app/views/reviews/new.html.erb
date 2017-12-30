@@ -6,64 +6,68 @@
       <thead>
         <tr><th>項目</th><th>評価</th></tr>
       </thead>
-      <tbody>
+      <tbody class="mood_rev">
         <tr><th colspan="2">雰囲気</th></tr>
         <tr><td><%= f.label :雰囲気総合, style: { 'margin-right' => 8 } %></td>
-          <td><%= f.number_field :mood, placeholder: '雰囲気総合', value: 1, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %></td>
+          <td><%= f.number_field :mood, placeholder: '雰囲気総合', value: 5, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %></td>
         </tr>
         <tr><td><%= f.label :室温, style: { 'margin-right' => 8 } %></td>
-          <td><%= f.number_field :temperature, placeholder: '室温', value: 1, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %></td>
+          <td><%= f.number_field :temperature, placeholder: '室温', value: 5, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %></td>
         </tr>
         <tr><td><%= f.label :音楽, style: { 'margin-right' => 8 } %></td>
-          <td><%= f.number_field :music, placeholder: '音楽', value: 1, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %></td>
+          <td><%= f.number_field :music, placeholder: '音楽', value: 5, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %></td>
         </tr>
         <tr><td><%= f.label :インテリア, style: { 'margin-right' => 8 } %></td>
-          <td><%= f.number_field :design, placeholder: 'インテリア', value: 1, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %></td>
+          <td><%= f.number_field :design, placeholder: 'インテリア', value: 5, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %></td>
         </tr>
         <tr><td><%= f.label :清潔度, style: { 'margin-right' => 8 } %></td>
-          <td><%= f.number_field :creanliness, placeholder: '清潔度', value: 1, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %></td>
+          <td><%= f.number_field :creanliness, placeholder: '清潔度', value: 5, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %></td>
         </tr>
       </tbody>
       <tbody>
         <tr><th colspan="2">料理</th></tr>
         <tr><td><%= f.label :料理総合, style: { 'margin-right' => 8 } %></td>
-          <td><%= f.number_field :food, placeholder: '料理総合', value: 1, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %></td>
+          <td><%= f.number_field :food, placeholder: '料理総合', value: 5, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %></td>
         </tr>
         <tr><td><%= f.label :うま味, style: { 'margin-right' => 8 } %></td>
-          <td><%= f.number_field :umami, placeholder: 'うま味', value: 1, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %></td>
+          <td><%= f.number_field :umami, placeholder: 'うま味', value: 5, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %></td>
         </tr>
         <tr><td><%= f.label :あま味, style: { 'margin-right' => 8 } %></td>
-          <td><%= f.number_field :amami, placeholder: 'あま味', value: 1, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %></td>
+          <td><%= f.number_field :amami, placeholder: 'あま味', value: 5, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %></td>
         </tr>
         <tr><td><%= f.label :酸味, style: { 'margin-right' => 8 } %></td>
-          <td><%= f.number_field :sanmi, placeholder: '酸味', value: 1, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %></td>
+          <td><%= f.number_field :sanmi, placeholder: '酸味', value: 5, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %></td>
         </tr>
         <tr><td><%= f.label :塩味, style: { 'margin-right' => 8 } %></td>
-          <td><%= f.number_field :siomi, placeholder: '塩味', value: 1, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %></td>
+          <td><%= f.number_field :siomi, placeholder: '塩味', value: 5, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %></td>
         </tr>
         <tr><td><%= f.label :苦味, style: { 'margin-right' => 8 } %></td>
-          <td><%= f.number_field :nigami, placeholder: '苦味', value: 1, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %></td>
+          <td><%= f.number_field :nigami, placeholder: '苦味', value: 5, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %></td>
         </tr>
       </tbody>
       <tbody>
         <tr><th colspan="2">サービス</th></tr>
         <tr><td><%= f.label :サービス総合, style: { 'margin-right' => 8 } %></td>
-          <td><%= f.number_field :service, placeholder: 'サービス総合', value: 1, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %></td>
+          <td><%= f.number_field :service, placeholder: 'サービス総合', value: 5, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %></td>
         </tr>
         <tr><td><%= f.label :スピード, style: { 'margin-right' => 8 } %></td>
-          <td><%= f.number_field :speed, placeholder: 'スピード', value: 1, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %></td>
+          <td><%= f.number_field :speed, placeholder: 'スピード', value: 5, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %></td>
         </tr>
         <tr><td><%= f.label :丁寧さ, style: { 'margin-right' => 8 } %></td>
-          <td><%= f.number_field :care, placeholder: '丁寧さ', value: 1, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %></td>
+          <td><%= f.number_field :care, placeholder: '丁寧さ', value: 5, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %></td>
         </tr>
         <tr><td><%= f.label :価格, style: { 'margin-right' => 8 } %></td>
-          <td><%= f.number_field :value, placeholder: '価格', value: 1, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %></td>
+          <td><%= f.number_field :value, placeholder: '価格', value: 5, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %></td>
         </tr>
         <tr><td><%= f.label :親切さ, style: { 'margin-right' => 8 } %></td>
-          <td><%= f.number_field :custom, placeholder: '塩味', value: 1, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %></td>
+          <td><%= f.number_field :custom, placeholder: '塩味', value: 5, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %></td>
         </tr>
       </tbody>
     </table>
+    <div>
+      <button type="button" class="tn btn--block" id="renew">更新</button>
+    </div>
+
     <div>
       <%= button_tag type: "submit", class: "btn btn--block" do %>
         評価する<i></i>
