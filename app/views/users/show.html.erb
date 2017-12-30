@@ -1,0 +1,29 @@
+<div class="user_page">
+  <header class="user_page-header">
+    <div class="yjContainer">
+      <a href="">
+        <h2><%=  current_user.username %> <span>さんのマイページ</span></h2>
+      </a>
+    </div>
+  </header>
+  <div class="pt1em pb1em" id="contents">  <div id="main_cnt_wrapper">
+    <div id="yjContentsBody">
+      <div class="yjContainer">
+        <ul class="user_page-contents">
+          <%  current_user.reviews.each do |review| %>
+
+            <li>
+              <a href="/restaurants/<%= review.restaurant.id %>"><%= review.restaurant.name %></a></br>
+              <a href="/restaurants/<%= review.restaurant.id %>"><img class="thumbnail" src= <%= review.restaurant.image_url %> alt="title" onerror="this.src='/assets/NoImage.jpeg';" /></a>
+              <table>
+                <tr><td>雰囲気</td><td><%= review.mood %></td></tr>
+                <tr><td>料理</td><td><%= review.food %></td></tr>
+                <tr><td>サービス</td><td><%= review.service %></td></tr>
+              </table>
+            </li>
+
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
