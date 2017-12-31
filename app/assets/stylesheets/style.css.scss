@@ -1,0 +1,274 @@
+@charset "UTF-8";
+
+/* --------------------------------
+ * base
+ * -------------------------------- */
+html {
+  font-size: 62.5%;
+}
+body {
+  padding: 30px;
+  background-color: #FFE3D9;
+  color: black;
+  font-size: 1.2rem;
+  font-family: "Hiragino Kaku Gothic ProN",  Meiryo,  sans-serif;
+}
+
+ul,
+li{
+  list-style:none;
+}
+a{
+  text-decoration: none;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.thumbnail{
+  width: 220px;
+  height: 220px;
+  margin: 10px;
+}
+
+.box-center{
+  margin: 0 auto;
+}
+
+
+/**, *::before, *::after {
+  box-sizing: border-box;
+}
+a:link, a:visited, a:hover, a:active {
+  color: #7C5119;
+  text-decoration: none;
+}*/
+
+/* --------------------------------
+ * header
+ * -------------------------------- */
+
+header {
+  width : 100%;
+  background-color: #FF9A77;
+
+  .header-wrapper{
+    width: 940px;
+    height: 60px;
+    vertical-align: middle;
+    margin: 0 auto;
+
+    .logo-box{
+      width: 620px;
+      display: inline-block;
+      padding: 0;
+
+
+        .header-logo{
+          color: #401406;
+          font-size: 30px;
+          font-weight: bold;
+          margin: 0 10px;
+          padding: 7px 0 0 0;
+          float: left;
+        }
+
+        .header-sub{
+          font-size: 16px;
+          vertical-align: bottom;
+          padding : 23px 0 0 0;
+        }
+
+    }
+
+    .mypage-box{
+      float: right;
+      text-align: right;
+      width: 300px;
+      padding: 5px 0 0 0;
+
+      div{
+        font-size: 14px;
+
+        span{
+          font-weight: bold;
+        }
+
+        a{
+          font-weight: bold;
+        }
+      }
+    }
+
+    .login-box{
+      float: right;
+      text-align: right;
+      width: 300px;
+      padding: 12.5px 0 0 0;
+    }
+
+          .post{
+        font-size: 16px;
+        width: 120px;
+        background-color: #7F270C;
+        color: #FFE3D9;
+        font-style: bold;
+        display: inline-block;
+        margin: 3px 0;
+        padding: 0;
+        vertical-align: middle;
+        text-align: center;
+        text-decoration: none;
+      }
+  }
+}
+
+/* --------------------------------
+ * contents
+ * -------------------------------- */
+.contents{
+  width: 940px;
+  vertical-align: middle;
+  margin: auto;
+
+  h2{
+    margin: 0;
+  }
+
+  .search-wrapper{
+
+    h1{
+    }
+
+    .search-box{
+      width: 500px;
+
+      .search-input{
+        font-size: 16px;
+        float: left;
+        width: 400px;
+        height: 40px;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        border-radius: 6px;
+      }
+
+      .search-btn{
+        float: left;
+        width: 70px;
+        height: 40px;
+        margin: 0;
+        padding: 2px;
+        border-radius: 6px;
+        background-color: #FF945F;
+        color: #FFE3D9;
+
+        i{
+          font-size: 16px;
+        }
+
+
+
+      }
+
+
+
+
+
+    }
+
+  }
+
+
+  .result-wrapper{
+
+    .profile-box{
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      background-color: #FFFFFF;
+      box-shadow:5px 5px 0 0 rgba(0,0,0,0.4);
+      border:1px solid #000;
+
+      .profile-title{
+        color: #000000;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .profile-detail{
+
+        img{
+          float: left;
+        }
+
+        .reviews-box{
+          float: left;
+          padding: 23px 0 0 0;
+
+          .profile-reviews{
+            margin: 10px;
+            border-spacing : 6px 6px;
+            border-collapse : separate ;
+
+            th{
+              font-size: 20px;
+              text-align: center;
+              background-color: #7F270C;
+              color: #FFFFFF;
+              width: 200px;
+              height: 50px;
+              box-shadow: 3px 3px 0 0 rgba(0,0,0,0.4);
+            }
+
+            td{
+              font-size: 30px;
+              text-align: center;
+              width: 100px;
+              height: 50px;
+              font-weight: bold;
+              text-shadow: 2px 2px 4px #6F6F6F;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+// #review_mood{
+//   display: none;
+// }
+
+
+/* --------------------------------
+ * footer
+ * -------------------------------- */
+footer{
+  width : 100%;
+}
+
+footer p{
+  text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+/********************************/
+.clearfix:after {
+  content: "";
+  clear: both;
+  display: block;
+}

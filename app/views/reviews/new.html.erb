@@ -6,6 +6,9 @@
       <thead>
         <tr><th>項目</th><th>評価</th></tr>
       </thead>
+
+      <%= f.number_field :mood, placeholder: '雰囲気総合', value: 5, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %>
+
       <tbody class="mood_rev">
         <tr><th colspan="2">雰囲気</th></tr>
         <tr><td><%= f.label :雰囲気総合, style: { 'margin-right' => 8 } %></td>

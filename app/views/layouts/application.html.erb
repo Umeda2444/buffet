@@ -9,33 +9,29 @@
   </head>
   <body>
     <header>
-      <div class = "header_wrapper crearfix">
-        <div class = "logo_wrapper">
-          <a href="/" class = "header_logo">ビュッフェ</a>
-          <span class = sub_logo>あなただけの美味しいを見つけるサービス</span>
+      <div class = "header-wrapper crearfix">
+        <div class = "logo-box clearfix">
+          <a href="/" class = "header-logo">ビュッフェ</a>
+          <div class = header-sub>あなただけの美味しいを見つけるサービス</div>
         </div>
         <% if user_signed_in? %>
-        <div class="login_wrapper2">
-            <ul class="user_info">
-              <li>
-                <span><%= current_user.username %>さん
-                <a href="/users/<%= current_user.id %>" >マイページ</a> /
-                <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-                </span>
-              </li>
-            </ul>
+        <div class="mypage-box">
+          <div>
+            <span>
+              <%= current_user.username %></span>さん
+              <a href="/users/<%= current_user.id %>" >マイページ</a> /
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+          </div>
           <a class="post" href="/restaurants/new">お店の投稿</a>
         </div>
-      <% else %>
-        <div class="login_wrapper">
-          <%= link_to "ログイン", new_user_session_path, :class => 'post' %>
-          <%= link_to "新規登録", new_user_registration_path, :class => 'post' %>
-        </div>
-      <% end %>
-
+        <% else %>
+          <div class="login-box">
+            <%= link_to "ログイン", new_user_session_path, :class => 'post login' %>
+            <%= link_to "新規登録", new_user_registration_path, :class => 'post sign-up' %>
+          </div>
+        <% end %>
       </div>
     </header>
-
 
   <%= yield %>
 

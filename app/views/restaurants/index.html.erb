@@ -1,23 +1,30 @@
 <div class="contents">
-  <div>
-    <p>お店の検索</p>
-    <div>
+  <div class="search-wrapper">
+    <h1 class="text-center">お店の検索</h1>
+    <div class="search-box box-center clearfix">
       <%= form_tag('/restaurants', method: :get) do %>
-        <input name="keyword" placeholder="お店の名前で検索" type="text" value=""><button class="btn-search" title="検索" type="submit"><i class="icon-search"></i></button></input>
+        <input name="keyword" placeholder="お店の名前で検索" type="text" value="" class="search-input"><button class="search-btn" title="検索" type="submit"><i class="icon-search">検索</i></button></input>
       <% end %>
     </div>
   </div>
-  <div>
-  <p>お店一覧</p>
+  <hr>
+  <div class="result-wrapper">
+    <h1 class="text-center">お店一覧</h1>
     <% @restaurant.each do |restaurant| %>
       <li>
-        <a href="/restaurants/<%= restaurant.id %>"><%= restaurant.name %></a></br>
-        <a href="/restaurants/<%= restaurant.id %>"><img class="thumbnail" src= <%= restaurant.image_url %> alt="title" onerror="this.src='/assets/NoImage.jpeg';" /></a>
-        <table>
-          <tr><td>雰囲気</td><td><%= restaurant.mood_average %></td></tr>
-          <tr><td>料理</td><td><%= restaurant.food_average %></td></tr>
-          <tr><td>サービス</td><td><%= restaurant.service_average %></td></tr>
-        </table>
+        <a href="/restaurants/<%= restaurant.id %>">
+          <div class="profile-box"><h2 class="profile-title"><%= restaurant.name %></h2></a>
+            <div class="profile-detail clearfix">
+              <a href="/restaurants/<%= restaurant.id %>"><img class="thumbnail" src= <%= restaurant.image_url %> alt=<%= restaurant.name %> onerror="this.src='/assets/Noimage.jpg';" /></a>
+              <div class="reviews-box">
+                <table class="profile-reviews">
+                  <tr><th>雰囲気</td><td><%= restaurant.mood_average %></th></tr>
+                  <tr><th>料理</td><td><%= restaurant.food_average %></th></tr>
+                  <tr><th>サービス</td><td><%= restaurant.service_average %></th></tr>
+                </table>
+              </div>
+            </div>
+          </div>
       </li>
     <% end %>
   </div>
