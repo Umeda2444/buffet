@@ -10,6 +10,16 @@
     <div id="yjContentsBody">
       <div class="yjContainer">
         <ul class="user_page-contents">
+          <p>あなたの好み（評価の平均）<p>
+        <table>
+          <tr><td>雰囲気</td><td><%= @user.mood_average %></td></tr>
+          <tr><td>料理</td><td><%= @user.food_average %></td></tr>
+          <tr><td>サービス</td><td><%= @user.service_average %></td></tr>
+        </table>
+
+
+
+          <p>全てのレビュー<p>
           <%  current_user.reviews.each do |review| %>
 
             <li>
