@@ -18,9 +18,9 @@
               <a href="/restaurants/<%= restaurant.id %>"><img class="thumbnail" src= <%= restaurant.image_url %> alt=<%= restaurant.name %> onerror="this.src='/assets/Noimage.jpg';" /></a>
               <div class="reviews-box">
                 <table class="profile-reviews">
-                  <tr><th>雰囲気</td><td><%= restaurant.mood_average %></th></tr>
-                  <tr><th>料理</td><td><%= restaurant.food_average %></th></tr>
-                  <tr><th>サービス</td><td><%= restaurant.service_average %></th></tr>
+                  <tr><th>雰囲気</td><td><%= restaurant.reviews_average(:mood) %></th></tr>
+                  <tr><th>料理</td><td><%= restaurant.reviews_average(:food) %></th></tr>
+                  <tr><th>サービス</td><td><%= restaurant.reviews_average(:service) %></th></tr>
                 </table>
               </div>
             </div>

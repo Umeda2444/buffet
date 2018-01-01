@@ -3,16 +3,19 @@
   <h4>評価を入力</h4>
   <%= form_for [@restaurant, @review] do |f| %>
     <table>
-      <thead>
-        <tr><th>項目</th><th>評価</th></tr>
-      </thead>
-
-      <%= f.number_field :mood, placeholder: '雰囲気総合', value: 5, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %>
+      <div class="invisible">
+      <%= f.label :雰囲気総合, style: { 'margin-right' => 8 } %>
+      <%= f.number_field :mood, placeholder: '雰囲気総合', value: 50, max: 100, min: 1, html: { class: "search__query", style: 'text-align: right;' } %>
+      <%= f.label :料理総合, style: { 'margin-right' => 8 } %>
+      <%= f.number_field :food, placeholder: '料理総合', value: 50, max: 100, min: 1, html: { class: "search__query", style: 'text-align: right;' } %>
+      <%= f.label :サービス総合, style: { 'margin-right' => 8 } %>
+      <%= f.number_field :service, placeholder: 'サービス総合', value: 50, max: 100, min: 1, html: { class: "search__query", style: 'text-align: right;' } %>
+      </div>
 
       <tbody class="mood_rev">
         <tr><th colspan="2">雰囲気</th></tr>
-        <tr><td><%= f.label :雰囲気総合, style: { 'margin-right' => 8 } %></td>
-          <td><%= f.number_field :mood, placeholder: '雰囲気総合', value: 5, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %></td>
+        <tr><td>総合</td>
+          <td><div id="review_mood_face">5</div></td>
         </tr>
         <tr><td><%= f.label :室温, style: { 'margin-right' => 8 } %></td>
           <td><%= f.number_field :temperature, placeholder: '室温', value: 5, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %></td>
@@ -29,8 +32,8 @@
       </tbody>
       <tbody>
         <tr><th colspan="2">料理</th></tr>
-        <tr><td><%= f.label :料理総合, style: { 'margin-right' => 8 } %></td>
-          <td><%= f.number_field :food, placeholder: '料理総合', value: 5, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %></td>
+        <tr><td>総合</td>
+          <td><div id="review_food_face">5</div></td>
         </tr>
         <tr><td><%= f.label :うま味, style: { 'margin-right' => 8 } %></td>
           <td><%= f.number_field :umami, placeholder: 'うま味', value: 5, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %></td>
@@ -50,8 +53,8 @@
       </tbody>
       <tbody>
         <tr><th colspan="2">サービス</th></tr>
-        <tr><td><%= f.label :サービス総合, style: { 'margin-right' => 8 } %></td>
-          <td><%= f.number_field :service, placeholder: 'サービス総合', value: 5, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %></td>
+        <tr><td>総合</td>
+          <td><div id="review_service_face">5</div></td>
         </tr>
         <tr><td><%= f.label :スピード, style: { 'margin-right' => 8 } %></td>
           <td><%= f.number_field :speed, placeholder: 'スピード', value: 5, max: 10, min: 1, html: { class: "search__query", style: 'text-align: right;' } %></td>

@@ -12,9 +12,9 @@
         <ul class="user_page-contents">
           <p>あなたの好み（評価の平均）<p>
         <table>
-          <tr><td>雰囲気</td><td><%= @user.mood_average %></td></tr>
-          <tr><td>料理</td><td><%= @user.food_average %></td></tr>
-          <tr><td>サービス</td><td><%= @user.service_average %></td></tr>
+          <tr><td>雰囲気</td><td><%= @user.reviews_average(:mood) %></td></tr>
+          <tr><td>料理</td><td><%= @user.reviews_average(:food) %></td></tr>
+          <tr><td>サービス</td><td><%= @user.reviews_average(:service) %></td></tr>
         </table>
 
 
@@ -26,9 +26,9 @@
               <a href="/restaurants/<%= review.restaurant.id %>"><%= review.restaurant.name %></a></br>
               <a href="/restaurants/<%= review.restaurant.id %>"><img class="thumbnail" src= <%= review.restaurant.image_url %> alt="title" onerror="this.src='/assets/Noimage.jpg';" /></a>
               <table>
-                <tr><td>雰囲気</td><td><%= review.mood %></td></tr>
-                <tr><td>料理</td><td><%= review.food %></td></tr>
-                <tr><td>サービス</td><td><%= review.service %></td></tr>
+                <tr><td>雰囲気</td><td><%= review.mood.to_f / 10 %></td></tr>
+                <tr><td>料理</td><td><%= review.food.to_f / 10 %></td></tr>
+                <tr><td>サービス</td><td><%= review.service.to_f / 10 %></td></tr>
               </table>
             </li>
 
