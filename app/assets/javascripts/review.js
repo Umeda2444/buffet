@@ -29,15 +29,17 @@ document.addEventListener("turbolinks:load", function() {
     food_ave = review_ave(food_ary);
     service_ave = review_ave(service_ary);
 
-    mood_ave_face = Math.round(mood_ave) / 10;
+
     food_ave_face = Math.round(food_ave) / 10;
     service_ave_face = Math.round(service_ave) / 10;
+
+
 
     document.getElementById('review_mood').value=mood_ave;
     document.getElementById('review_food').value=food_ave;
     document.getElementById('review_service').value=service_ave;
 
-    document.getElementById('review_mood_face').innerHTML=mood_ave_face;
+    document.getElementById('review_mood_face').innerHTML=Math.round(mood_ave) / 10;
     document.getElementById('review_food_face').innerHTML=food_ave_face;
     document.getElementById('review_service_face').innerHTML=service_ave_face;
 
