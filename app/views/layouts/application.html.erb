@@ -6,6 +6,26 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
+  <style type="text/css">
+
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+  }
+
+  .axis text {
+    font-family: sans-serif;
+    font-size: 11px;
+  }
+
+  circle.back-cir{
+    fill: #FF967A;
+    stroke: #FF967A;
+    stroke-width: 40;
+  }
+  </style>
   </head>
   <body>
     <header>
