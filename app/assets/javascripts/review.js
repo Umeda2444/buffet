@@ -30,10 +30,10 @@ document.addEventListener("turbolinks:load", function() {
     }
 
     var mood_vary = review_ave(mood_ary);
-    var food_ary = review_ave(food_ary);
-    var service_ary = review_ave(service_ary);
+    var food_vary = review_ave(food_ary);
+    var service_vary = review_ave(service_ary);
 
-    function radarchart(array){
+    function radarchart(array, nameary){
       // 幅（ Width ）と高さ（ height ）
       var w = 400; var ox = w/2; //原点ｘ軸
       var h = 400; var oy = h/2; //原点ｙ軸
@@ -68,8 +68,8 @@ document.addEventListener("turbolinks:load", function() {
       .attr("r", r
       );
 
-    //評価軸の設定
     for(var z = 0; z < datalength; z++){
+      //評価軸の設定
     svg.append('line')
       .attr('x1', ox)
       .attr('y1', oy)
@@ -88,6 +88,25 @@ document.addEventListener("turbolinks:load", function() {
       .attr("stroke", "rgb(255,255,255)")
       .attr("stroke-width", 5)
       .attr('fill', 'none');
+
+      //ラベルの設定
+    svg.append("text")
+       .text(function() {
+       return nameary[z];
+      })
+      .attr('x', function(){
+        var x = ox;
+        var rad = -1 * (2 * Math.PI / (datalength) *z +(Math.PI / 2));
+        x = ox + Math.cos(rad) * r;
+        return x;
+      })
+      .attr('y', function(){
+        var y = oy;
+        var rad = (2 * Math.PI / (datalength) *z +(Math.PI / 2));
+        y = oy - Math.sin(rad) * r;
+        return y;
+      })
+      .attr('font-size', '20px');
 
       //目盛り線の生成
       for(var i = 1; i < scalenumber; i++){
@@ -147,8 +166,8 @@ document.addEventListener("turbolinks:load", function() {
        .attr("stroke-width", 10)
        .attr('fill', 'none');
     }
-    radarchart(mood_vary);
-    radarchart(food_ary);
-    radarchart(service_ary);
+    radarchart(mood_vary,mood_ary);
+    radarchart(food_vary, food_ary);
+    radarchart(service_vary, service_ary);
   });
 });
