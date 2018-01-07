@@ -6,6 +6,7 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   <style type="text/css">
 
   .axis path,
@@ -25,39 +26,64 @@
     stroke: #FF967A;
     stroke-width: 40;
   }
+  ul,
+  li{
+    list-style:none;
+  }
   </style>
   </head>
   <body>
-    <header>
-      <div class = "header-wrapper crearfix">
-        <div class = "logo-box clearfix">
-          <a href="/" class = "header-logo">ビュッフェ</a>
-          <div class = header-sub>あなただけの美味しいを見つけるサービス</div>
-        </div>
-        <% if user_signed_in? %>
-        <div class="mypage-box">
-          <div>
-            <span>
-              <%= current_user.username %></span>さん
-              <a href="/users/<%= current_user.id %>" >マイページ</a> /
-              <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+    <div class="container">
+      <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed"data-toggle="collapse"data-target="#navbarEexample8">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+              ビュッフェ
+            </a>
           </div>
-          <a class="post" href="/restaurants/new">お店の投稿</a>
-        </div>
-        <% else %>
-          <div class="login-box">
-            <%= link_to "ログイン", new_user_session_path, :class => 'post login' %>
-            <%= link_to "新規登録", new_user_registration_path, :class => 'post sign-up' %>
+
+          <div class="collapse navbar-collapse" id="navbarEexample8">
+            <ul class="nav navbar-nav">
+              <!-- 押すことで検索画面に移動 -->
+              <li><a href="#">検索</a></li>
+              <!-- 押すことで検索画面に移動 -->
+            </ul>
+
+            <% if user_signed_in? %><!-- 会員用メニュー -->
+            <ul class="nav navbar-nav navbar-right">
+              <li><p class="navbar-text navbar-right">ようこそ <a href="/users/<%= current_user.id %>" class="navbar-link"><%= current_user.username %></a> さん。</p></li>
+              <li class="dropdown"><!-- .openでアクセスした時に開いた状態にできる -->
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">メニュー <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="/users/<%= current_user.id %>">マイページ</a></li>
+                  <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+                  <li><a class="post" href="/restaurants/new">お店の投稿</a></li>
+                </ul>
+              </li>
+            </ul>
+            <% else %><!-- ゲスト用メニュー -->
+            <ul class="nav navbar-nav navbar-right">
+              <li><p class="navbar-text navbar-right">ようこそ <a href="#" class="navbar-link">ゲスト</a> さん。</p></li>
+              <li><%= link_to "ログイン", new_user_session_path, :class => 'post login' %></li>
+              <li><%= link_to "新規登録", new_user_registration_path, :class => 'post sign-up' %></li>
+            </ul>
+            <% end %>
           </div>
-        <% end %>
-      </div>
-    </header>
+        </div>
+      </nav>
 
-  <%= yield %>
+      <%= yield %>
 
-  <footer>
-    <p>Copyright 2018 ビュッフェ<p>
-  </footer>
+      <footer>
+        <p class="text-center">Copyright 2018 ビュッフェ<p>
+      </footer>
+    </div>
 
   </body>
 </html>

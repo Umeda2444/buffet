@@ -1,33 +1,36 @@
-<div class="contents">
-  <div class="search-wrapper">
-    <h1 class="text-center">お店の検索</h1>
-    <div class="search-box box-center clearfix">
-      <%= form_tag('/restaurants', method: :get) do %>
-        <input name="keyword" placeholder="お店の名前で検索" type="text" value="" class="search-input"><button class="search-btn" title="検索" type="submit"><i class="icon-search">検索</i></button></input>
-      <% end %>
+<div class=".container" style="padding-top: 50px">
+  <div class="jumbotron">
+    <h2 class="">お店の検索</h2>
+    <div class="container">
+      <div class="input-group">
+        <%= form_tag('/restaurants', method: :get) do %>
+          <input name="keyword" placeholder="お店の名前で検索" type="text" value="" class="form-control">
+          <span class="input-group-btn"><button type="button" title="検索" class="btn btn-default">検索</button>
+          </span></input>
+        <% end %>
+      </div>
     </div>
+
   </div>
   <hr>
-  <div class="result-wrapper">
-    <h1 class="text-center">お店一覧</h1>
-    <% @restaurant.each do |restaurant| %>
-      <li>
-        <a href="/restaurants/<%= restaurant.id %>">
-          <div class="profile-box"><h2 class="profile-title"><%= restaurant.name %></h2></a>
-            <div class="profile-detail clearfix">
-              <a href="/restaurants/<%= restaurant.id %>"><img class="thumbnail" src= <%= restaurant.image_url %> alt=<%= restaurant.name %> onerror="this.src='/assets/Noimage.jpg';" /></a>
-              <div class="reviews-box">
-                <table class="profile-reviews">
-                  <tr><th>雰囲気</td><td><%= restaurant.reviews_average(:mood) %></th></tr>
-                  <tr><th>料理</td><td><%= restaurant.reviews_average(:food) %></th></tr>
-                  <tr><th>サービス</td><td><%= restaurant.reviews_average(:service) %></th></tr>
-                </table>
-              </div>
-            </div>
-          </div>
-      </li>
-    <% end %>
+  <h1 class="text-center">お店一覧</h1>
+  <% @restaurant.each do |restaurant| %>
+  <div class="row panel panel-primary">
+    <li>
+      <div class="col-sm-4 col-md-3"><a href="/restaurants/<%= restaurant.id %>">
+        <img class="img-rounded" src= <%= restaurant.image_url %> alt=<%= restaurant.name %> onerror="this.src='/assets/Noimage.jpg';" />
+        </a></div>
+      <div class="col-sm-8 col-md-9">
+        <a href="/restaurants/<%= restaurant.id %>"><h2 class="media-heading"><%= restaurant.name %></h2></a>
+        <table class="">
+          <tr><th>雰囲気</td><td><%= restaurant.reviews_average(:mood) %></th></tr>
+          <tr><th>料理</td><td><%= restaurant.reviews_average(:food) %></th></tr>
+          <tr><th>サービス</td><td><%= restaurant.reviews_average(:service) %></th></tr>
+        </table>
+      </div>
+    </li>
   </div>
+  <% end %>
 </div>
 
 
