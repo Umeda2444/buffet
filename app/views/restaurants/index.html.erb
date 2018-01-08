@@ -4,12 +4,32 @@
     <div class="container">
       <div class="input-group">
         <%= form_tag('/restaurants', method: :get) do %>
-          <input name="keyword" placeholder="お店の名前で検索" type="text" value="" class="form-control">
+          <input name="keyword" placeholder="お店の名前で検索" type="text" value="" class="form-control" >
           <span class="input-group-btn"><button type="button" title="検索" class="btn btn-default">検索</button>
           </span>
         <% end %>
       </div>
+
+      <!-- 参考 -->
+      <div class="search-wrapper">
+        <h1 class="text-center">お店の検索</h1>
+        <div class="search-box box-center clearfix">
+          <%= form_tag('/restaurants', method: :get) do %>
+            <input name="keyword" placeholder="お店の名前で検索" type="text" value="" class="search-input"><button class="search-btn" title="検索" type="submit"><i class="icon-search">検索</i></button></input>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="テキスト入力欄">
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-default">ボタン</button>
+        </span>
+      </div>
+
     </div>
+
+
 
   </div>
   <hr>
