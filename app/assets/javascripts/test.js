@@ -12,16 +12,22 @@ document.addEventListener("turbolinks:load", function() {
   var w = 1200;
   var h = 400;  var oy = h/2; //原点ｙ軸
   var padding = 20;
-  var r = (h / 2) - padding //背景の円半径
+  var r = (h / 2) - padding; //背景の円半径
   var carlev = 10;//評価のランク数
   var sss = 10;//目盛り線の長さ)
   var ssd = 0.2; //目盛り間隔
   var scalenumber = 1 / ssd//目盛りの数
   var dataset = [
-                {category: "mood", ox: 200, vary: [5, 5, 5, 5, 5]},
-                {category: "food", ox: 600, vary: [5, 5, 5, 5, 5, 5]},
-                {category: "service", ox: 1000, vary: [5, 5, 5, 5, 5]},
-  ]
+                {category: "mood", ox: 200,
+                  nary: ["mood", "temperature", "music", "design", "creanliness"],
+                  vary: [5, 5, 5, 5, 5]},
+                {category: "food", ox: 600,
+                  nary: ["food", "umami", "amami", "sanmi", "siomi", "nigami"],
+                  vary: [5, 5, 5, 5, 5, 5]},
+                {category: "service", ox: 1000,
+                  nary: ["service", "speed", "care", "value", "custom"],
+                  vary: [5, 5, 5, 5, 5]}
+                ];
 
       // SVG 要素の生成
   var svg = d3.select("body")
@@ -33,7 +39,7 @@ document.addEventListener("turbolinks:load", function() {
     );
 
     //背景生成関数
-  function set_flask(ox, valueary, nameary) {
+  function g_frame(ox, valueary, nameary) {
     datalength = valueary.length;
 
     //背景円生成
@@ -114,9 +120,8 @@ document.addEventListener("turbolinks:load", function() {
   }
 
     // データの線を生成
-  function plot_data(ox, valueary){
-    var dataset = [];
-    dataset.push(valueary);
+  function plot_data(dataset){
+
     console.log(dataset);
 
     svg.selectAll('path')
@@ -124,27 +129,29 @@ document.addEventListener("turbolinks:load", function() {
        .enter()
        .append('path')
        .attr('d', function(d){
-          var point = r * d[0]/carlev;
-          var dstatus = `M${ox - Math.cos(-1 * Math.PI / 2) * point},${oy + Math.sin(-1 * Math.PI / 2) * point}`;
-          for(var i = 1; i< d.length; i++){
-            var x = ox;
+          var point = r * d.vary[0]/carlev;
+          var dstatus = `M${d.ox - Math.cos(-1 * Math.PI / 2) * point},${oy + Math.sin(-1 * Math.PI / 2) * point}`;
+          console.log(d.vary.length);
+          for(var i = 1; i< d.vary.length; i++){
+            var x = d.ox;
             var y = oy;
-            var rad = -1 *(2 * Math.PI / (d.length) *i) +(Math.PI / 2);
-            point = r * d[i]/carlev;
-            x = ox + Math.cos(rad) * point;
+            var rad = -1 *(2 * Math.PI / (d.vary.length) *i) +(Math.PI / 2);
+            point = r * d.vary[i]/carlev;
+            x = d.ox + Math.cos(rad) * point;
             y = oy - Math.sin(rad) * point;
             dstatus += ` L${x},${y}`;
           }
 
         for(var i = 0; i< 2; i++){
-          var x = ox;
+          var x = d.ox;
           var y = oy;
-          var rad = -1 *(2 * Math.PI / (d.length) *i) +(Math.PI / 2);
-          point = r * d[i]/carlev;
-          x = ox + Math.cos(rad) * point;
+          var rad = -1 *(2 * Math.PI / (d.vary.length) *i) +(Math.PI / 2);
+          point = r * d.vary[i]/carlev;
+          x = d.ox + Math.cos(rad) * point;
           y = oy - Math.sin(rad) * point;
           dstatus += ` L${x},${y}`;
         }
+        console.log(dstatus);
         return dstatus;
       })
        .attr("stroke", "rgba(0,0,0,0.65)")
@@ -152,119 +159,43 @@ document.addEventListener("turbolinks:load", function() {
        .attr('fill', 'none');
   }
 
+  g_frame(200, mood_vary, mood_ary);
+  g_frame(600, food_vary, food_ary);
+  g_frame(1000, service_vary, service_ary);
+  plot_data(dataset);//デフォルトのデータ線
+
+// 雰囲気、料理、サービスの総合を計算して返す
+  $("#renew").on("click", function() {
+    function review_ave(ary) {
+      var num = 0;
+      var sum = 0;
+      var ave = 0;
+      var review_val = ""
+      var review_val_face = ""
+      var val_ary = [];
+
+      for (var i = 1, n = ary.length; i < n; i++ ) {
+        num = $('input#review_' + ary[i]).val();
+        sum += Number(num);
+        val_ary.push(Number(num));
+      }
+      ave = sum/ (ary.length-1) * 10;
+      review_val = "review_" + ary[0];
+      review_val_face = review_val + "_face";
+
+      document.getElementById(review_val).value=ave;
+      document.getElementById(review_val_face).innerHTML=Math.round(ave) / 10;
+      val_ary.unshift(Math.round(ave) / 10);
+      return val_ary;
+    }
+    var mood_vary = review_ave(mood_ary);
+    var food_vary = review_ave(food_ary);
+    var service_vary = review_ave(service_ary);
 
 
+    radarchart(mood_vary,mood_ary);
+    radarchart(food_vary, food_ary);
+    radarchart(service_vary, service_ary);
 
-
-
-
-  // function plot_path(){
-  //   // データの線を更新
-  //   svg.selectAll('path')
-  //      .data(dataset)
-  //      .enter()
-  //      .append('path')
-  //      .attr('d', function(d){
-  //         var point = r * d[0]/carlev;
-  //         var dstatus = `M${ox - Math.cos(-1 * Math.PI / 2) * point},${oy + Math.sin(-1 * Math.PI / 2) * point}`;
-  //         for(var i = 1; i< d.length; i++){
-  //           var x = ox;
-  //           var y = oy;
-  //           var rad = -1 *(2 * Math.PI / (d.length) *i) +(Math.PI / 2);
-  //           point = r * d[i]/carlev;
-  //           x = ox + Math.cos(rad) * point;
-  //           y = oy - Math.sin(rad) * point;
-  //           dstatus += ` L${x},${y}`;
-  //         }
-
-  //         for(var i = 0; i< 2; i++){
-  //           var x = ox;
-  //           var y = oy;
-  //           var rad = -1 *(2 * Math.PI / (d.length) *i) +(Math.PI / 2);
-  //           point = r * d[i]/carlev;
-  //           x = ox + Math.cos(rad) * point;
-  //           y = oy - Math.sin(rad) * point;
-  //           dstatus += ` L${x},${y}`;
-  //         }
-  //         return dstatus;
-  //     })
-  //      .attr("stroke", "rgba(0,0,0,0.65)")
-  //      .attr("stroke-width", 10)
-  //      .attr('fill', 'none');
-  //   }
-  // }
-
-
-
-
-
-
-
-
-
-
-  set_flask(200, mood_vary, mood_ary);
-  set_flask(600, food_vary, food_ary);
-  set_flask(1000, service_vary, service_ary);
-
-
-
-
-
-
-
-//     function radarchart(array, nameary){
-
-//       var dataset = [];
-//       dataset.push(array);
-//       var datalength = dataset[0].length;
-//       console.log(datalength);
-
-
-
-
-
-
-
-
-
-
-
-// // 雰囲気、料理、サービスの総合を計算して返す
-//   $("#renew").on("click", function() {
-
-
-
-//     function review_ave(ary) {
-//       var num = 0;
-//       var sum = 0;
-//       var ave = 0;
-//       var review_val = ""
-//       var review_val_face = ""
-//       var val_ary = [];
-
-//       for (var i = 1, n = ary.length; i < n; i++ ) {
-//         num = $('input#review_' + ary[i]).val();
-//         sum += Number(num);
-//         val_ary.push(Number(num));
-//       }
-//       ave = sum/ (ary.length-1) * 10;
-//       review_val = "review_" + ary[0];
-//       review_val_face = review_val + "_face";
-
-//       document.getElementById(review_val).value=ave;
-//       document.getElementById(review_val_face).innerHTML=Math.round(ave) / 10;
-//       val_ary.unshift(Math.round(ave) / 10);
-//       return val_ary;
-//     }
-
-//     var mood_vary = review_ave(mood_ary);
-//     var food_vary = review_ave(food_ary);
-//     var service_vary = review_ave(service_ary);
-
-
-//     radarchart(mood_vary,mood_ary);
-//     radarchart(food_vary, food_ary);
-//     radarchart(service_vary, service_ary);
-//   });
+  });
 });
