@@ -39,87 +39,90 @@ document.addEventListener("turbolinks:load", function() {
     );
 
     //背景生成関数
-  function g_frame(ox, valueary, nameary) {
-    datalength = valueary.length;
+  function g_frame(datas) {
+    for(var j = 0; j < datas.length; j++){
+      var ox = datas[j].ox;
+      var valueary = datas[j].vary;
+      var nameary = datas[j].nary;
+      var datalength = valueary.length;
+      //背景円生成
+      var backcir = svg.append("circle")
+        .attr("class", "back-cir"
+        )
+        .attr("cx", ox
+        )
+        .attr("cy", oy
+        )
+        .attr("r", r
+        );
 
-    //背景円生成
-    var backcir = svg.append("circle")
-      .attr("class", "back-cir"
-      )
-      .attr("cx", ox
-      )
-      .attr("cy", oy
-      )
-      .attr("r", r
-      );
-
-    for(var z = 0; z < datalength; z++){
-        //評価軸の設定
-      svg.append('line')
-        .attr('x1', ox)
-        .attr('y1', oy)
-        .attr('x2', function(){
-          var x = ox;
-          var rad = -1 * (2 * Math.PI / (datalength) *z +(Math.PI / 2));
-          x = ox + Math.cos(rad) * r;
-          return x;
-        })
-        .attr('y2', function(){
-          var y = oy;
-          var rad = (2 * Math.PI / (datalength) *z +(Math.PI / 2));
-          y = oy - Math.sin(rad) * r;
-          return y;
-        })
-        .attr("stroke", "rgb(255,255,255)")
-        .attr("stroke-width", 5)
-        .attr('fill', 'none');
-
-        //ラベルの設定
-      svg.append("text")
-         .text(function() {
-         return nameary[z];
-        })
-        .attr('x', function(){
-          var x = ox;
-          var rad = -1 * (2 * Math.PI / (datalength) *z +(Math.PI / 2));
-          x = ox + Math.cos(rad) * r;
-          return x;
-        })
-        .attr('y', function(){
-          var y = oy;
-          var rad = (2 * Math.PI / (datalength) *z +(Math.PI / 2));
-          y = oy - Math.sin(rad) * r;
-          return y;
-        })
-        .attr('font-size', '20px');
-
-      //目盛り線の生成
-      for(var i = 1; i < scalenumber; i++){
-        var theta = Math.atan(sss/(ssd * i * r));//目盛り線の角度
-        var sr = ssd * i * r * Math.cos(theta);
-        var mrad = -1 * (2 * Math.PI / (datalength) *z +(Math.PI / 2));
+      for(var z = 0; z < datalength; z++){
+          //評価軸の設定
         svg.append('line')
-        .attr('x1', function(){
-          return ox + (sr * Math.cos(theta + mrad));
-        })
-        .attr('y1', function(){
-          return oy + (sr * Math.sin(theta + mrad));
-        })
-        .attr('x2', function(){
-          return ox + (sr * Math.cos(-1 * theta + mrad));
-        })
-        .attr('y2', function(){
-          return oy + (sr * Math.sin(-1 * theta + mrad));
-        })
-        .attr("stroke", "rgb(255,255,255)")
-        .attr("stroke-width", 3)
-        .attr('fill', 'none');
+          .attr('x1', ox)
+          .attr('y1', oy)
+          .attr('x2', function(){
+            var x = ox;
+            var rad = -1 * (2 * Math.PI / (datalength) *z +(Math.PI / 2));
+            x = ox + Math.cos(rad) * r;
+            return x;
+          })
+          .attr('y2', function(){
+            var y = oy;
+            var rad = (2 * Math.PI / (datalength) *z +(Math.PI / 2));
+            y = oy - Math.sin(rad) * r;
+            return y;
+          })
+          .attr("stroke", "rgb(255,255,255)")
+          .attr("stroke-width", 5)
+          .attr('fill', 'none');
+
+          //ラベルの設定
+        svg.append("text")
+           .text(function() {
+           return nameary[z];
+          })
+          .attr('x', function(){
+            var x = ox;
+            var rad = -1 * (2 * Math.PI / (datalength) *z +(Math.PI / 2));
+            x = ox + Math.cos(rad) * r;
+            return x;
+          })
+          .attr('y', function(){
+            var y = oy;
+            var rad = (2 * Math.PI / (datalength) *z +(Math.PI / 2));
+            y = oy - Math.sin(rad) * r;
+            return y;
+          })
+          .attr('font-size', '20px');
+
+        //目盛り線の生成
+        for(var i = 1; i < scalenumber; i++){
+          var theta = Math.atan(sss/(ssd * i * r));//目盛り線の角度
+          var sr = ssd * i * r * Math.cos(theta);
+          var mrad = -1 * (2 * Math.PI / (datalength) *z +(Math.PI / 2));
+          svg.append('line')
+          .attr('x1', function(){
+            return ox + (sr * Math.cos(theta + mrad));
+          })
+          .attr('y1', function(){
+            return oy + (sr * Math.sin(theta + mrad));
+          })
+          .attr('x2', function(){
+            return ox + (sr * Math.cos(-1 * theta + mrad));
+          })
+          .attr('y2', function(){
+            return oy + (sr * Math.sin(-1 * theta + mrad));
+          })
+          .attr("stroke", "rgb(255,255,255)")
+          .attr("stroke-width", 3)
+          .attr('fill', 'none');
+        }
       }
     }
-    plot_data(ox, valueary);
   }
 
-    // データの線を生成
+    // datasetからチャートを生成
   function plot_data(dataset){
     svg.selectAll('path')
        .data(dataset)
@@ -155,9 +158,7 @@ document.addEventListener("turbolinks:load", function() {
        .attr('fill', 'none');
   }
 
-  g_frame(200, mood_vary, mood_ary);
-  g_frame(600, food_vary, food_ary);
-  g_frame(1000, service_vary, service_ary);
+  g_frame(dataset); //背景の設定
   plot_data(dataset);//デフォルトのデータ線
 
 // 更新ボタンを押すと雰囲気、料理、サービスの総合を計算して返す
