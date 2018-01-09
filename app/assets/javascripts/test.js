@@ -30,7 +30,7 @@ document.addEventListener("turbolinks:load", function() {
                 ];
 
       // SVG 要素の生成
-  var svg = d3.select("body")
+  var svg = d3.select(".radarchart")
     .append("svg"
     )
     .attr("width", w
@@ -121,9 +121,6 @@ document.addEventListener("turbolinks:load", function() {
 
     // データの線を生成
   function plot_data(dataset){
-
-    console.log(dataset);
-
     svg.selectAll('path')
        .data(dataset)
        .enter()
@@ -131,7 +128,6 @@ document.addEventListener("turbolinks:load", function() {
        .attr('d', function(d){
           var point = r * d.vary[0]/carlev;
           var dstatus = `M${d.ox - Math.cos(-1 * Math.PI / 2) * point},${oy + Math.sin(-1 * Math.PI / 2) * point}`;
-          console.log(d.vary.length);
           for(var i = 1; i< d.vary.length; i++){
             var x = d.ox;
             var y = oy;
@@ -164,38 +160,39 @@ document.addEventListener("turbolinks:load", function() {
   g_frame(1000, service_vary, service_ary);
   plot_data(dataset);//デフォルトのデータ線
 
-// 雰囲気、料理、サービスの総合を計算して返す
+// 更新ボタンを押すと雰囲気、料理、サービスの総合を計算して返す
+// ＆データ再プロット
   $("#renew").on("click", function() {
-    function review_ave(ary) {
-      var num = 0;
-      var sum = 0;
-      var ave = 0;
-      var review_val = ""
-      var review_val_face = ""
-      var val_ary = [];
+    d3.selectAll("path")
+      .remove();
 
-      for (var i = 1, n = ary.length; i < n; i++ ) {
-        num = $('input#review_' + ary[i]).val();
-        sum += Number(num);
-        val_ary.push(Number(num));
+    function review_ave(datas) {
+      for (var i = 0; i < 3; i++ ) {
+        var ave = 0;
+        var sum = 0;
+        var val_ary = [];
+        var review_val = ""
+        var review_val_face = ""
+        var nary = datas[i].nary;
+
+        for (var j = 1; j < nary.length; j++ ) {
+          var num = 0;
+          num = $('input#review_' + nary[j]).val();
+          sum += Number(num);
+          val_ary.push(Number(num));
+        }
+        ave = sum/ (nary.length-1) * 10;
+        review_val = "review_" + nary[0];
+        review_val_face = review_val + "_face";
+        document.getElementById(review_val).value=ave;
+        document.getElementById(review_val_face).innerHTML=Math.round(ave) / 10;
+        val_ary.unshift(Math.round(ave) / 10);
+        dataset[i].vary = val_ary;
       }
-      ave = sum/ (ary.length-1) * 10;
-      review_val = "review_" + ary[0];
-      review_val_face = review_val + "_face";
-
-      document.getElementById(review_val).value=ave;
-      document.getElementById(review_val_face).innerHTML=Math.round(ave) / 10;
-      val_ary.unshift(Math.round(ave) / 10);
-      return val_ary;
     }
-    var mood_vary = review_ave(mood_ary);
-    var food_vary = review_ave(food_ary);
-    var service_vary = review_ave(service_ary);
-
-
-    radarchart(mood_vary,mood_ary);
-    radarchart(food_vary, food_ary);
-    radarchart(service_vary, service_ary);
-
+  console.log(dataset);
+  review_ave(dataset);
+  console.log(dataset);
+  plot_data(dataset);
   });
 });
